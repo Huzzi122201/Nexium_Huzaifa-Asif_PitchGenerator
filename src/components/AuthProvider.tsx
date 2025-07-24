@@ -3,15 +3,16 @@
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Link from "next/link";
-import { LogOut, User } from "lucide-react";
+import { LogOut, User as UserIcon } from "lucide-react";
 import { useRouter } from 'next/navigation';
+import { User } from '@supabase/supabase-js';
 
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -62,7 +63,7 @@ export default function AuthProvider({
                         href="/dashboard"
                         className="flex items-center gap-2 hover:text-blue-500 transition-colors"
                       >
-                        <User className="h-5 w-5" />
+                        <UserIcon className="h-5 w-5" />
                         Dashboard
                       </Link>
                       <button
